@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html ng-app="un_app">
+ 
+<head>
+  <title>Ultimate Ninjas</title>
+  <link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/lib/angular-material/angular-material.css">
+  <script type="text/javascript" src="/lib/angular/angular.min.js"></script>
+<script type="text/javascript" src="/lib/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="/lib/bootstrap/node_modules/angular-ui-bootstrap/dist
+/ui-bootstrap-tpls.js"></script>
+    <script type="text/javascript" src="/lib/jquery/dist/jquery.min.js"></script>
+    
+    
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.0/fullcalendar.css' />
+
+<script src='http://code.jquery.com/jquery-1.11.3.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.6.0/fullcalendar.min.js'></script>
+  
+    
+    <!-- Angular material dependencies-->
+    <!--<script src="/lib/angular/angular.js"></script> -->
+    <script src="/lib/angular-aria/angular-aria.js"></script> 
+    <script src="/lib/angular-animate/angular-animate.js"></script> 
+    <script src="/lib/angular-material/angular-material.js"></script>
+    
+    <script type="text/javascript" src="/js/app.js"></script>
+  <script type="text/javascript" src="/js/factory.js"></script>
+  <script type="text/javascript" src="/js/controller.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/menu_bar.css">
+    <script type="text/javascript" src="/js/auth_fctry.js"></script>
+  <script type="text/javascript" src="/js/auth_ctrl.js"></script>
+    
+</head>
+ 
+<body style="background-color: #f1f1f1;">
+ 
+<div ng-controller="newController" layout="column" style="" ng-cloak>
+<md-content>
+  <md-toolbar class="md-hue-2" style="background: #000059;">
+      <div class="md-toolbar-tools">
+<!--        <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">-->
+<!--        </md-button>-->
+        <!--<h2 flex md-truncate>Ultimate Ninjas</h2>-->
+        <img class="logo" src="/images/una_full_chicago_white_tm.png" width="100px" height="auto">
+<!--
+        <md-button class="md-icon-button" aria-label="Favorite">
+        </md-button>
+        <md-button class="md-icon-button" aria-label="More">
+        </md-button>
+-->
+          <span ng-if="user.name !== undefined" layout="row" flex layout-align="end center" style="font-size: 14px; font-weight: bold;">
+          <i class="glyphicon glyphicon-user" style="margin-right: 5px;"></i>
+              {{user.name}}
+          </span>
+      </div>
+    </md-toolbar>
+</md-content>
+            
+
+
+  <section layout="row" flex-xs >
+
+    <md-content flex layout-padding style="background-color: #f1f1f1;">
+
+      <div class="container" style="background-color: #f1f1f1;">
+    <ng-view></ng-view>
+  </div>
+
+    </md-content>
+
+  </section>
+
+
+            
+</div>      
+            
+  <script type="text/javascript" src="http://localhost:35729/livereload.js"></script>
+</body>
+ 
+</html>
