@@ -1,3 +1,12 @@
+un_app.factory('homeFactory', function($http) {
+    //var urlBase = '/api/create_class';
+    var _signUp = {};
+    _signUp.save = function(params) {
+        return $http.post(params.url, params);
+    };
+    return _signUp;
+});
+
 un_app.factory('signUpFactory', function($http) {
     //var urlBase = '/api/create_class';
     var _signUp = {};

@@ -2,7 +2,7 @@
 <html ng-app="un_app">
  
 <head>
-  <title>Ultimate Ninjas</title>
+  <title>Ninja Now</title>
   <link rel="stylesheet" type="text/css" href="/lib/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/lib/angular-material/angular-material.css">
   <script type="text/javascript" src="/lib/angular/angular.min.js"></script>
@@ -28,9 +28,9 @@
     <script type="text/javascript" src="/js/app.js"></script>
   <script type="text/javascript" src="/js/factory.js"></script>
   <script type="text/javascript" src="/js/controller.js"></script>
-    <link rel="stylesheet" type="text/css" href="/css/menu_bar.css">
-    <script type="text/javascript" src="/js/auth_fctry.js"></script>
-  <script type="text/javascript" src="/js/auth_ctrl.js"></script>
+<!--    <link rel="stylesheet" type="text/css" href="/css/menu_bar.css">-->
+<!--    <script type="text/javascript" src="/js/auth_fctry.js"></script>-->
+<!--  <script type="text/javascript" src="/js/auth_ctrl.js"></script>-->
     
 </head>
  
@@ -40,20 +40,13 @@
 <md-content>
   <md-toolbar class="md-hue-2" style="background: #000059;">
       <div class="md-toolbar-tools">
-<!--        <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">-->
-<!--        </md-button>-->
-        <!--<h2 flex md-truncate>Ultimate Ninjas</h2>-->
         <img class="logo" src="/images/una_full_chicago_white_tm.png" width="100px" height="auto">
 <!--
-        <md-button class="md-icon-button" aria-label="Favorite">
-        </md-button>
-        <md-button class="md-icon-button" aria-label="More">
-        </md-button>
--->
           <span ng-if="user.name !== undefined" layout="row" flex layout-align="end center" style="font-size: 14px; font-weight: bold;">
           <i class="glyphicon glyphicon-user" style="margin-right: 5px;"></i>
               {{user.name}}
           </span>
+-->
       </div>
     </md-toolbar>
 </md-content>
