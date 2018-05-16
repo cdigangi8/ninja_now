@@ -1,5 +1,6 @@
 un_app.controller('homeCtrl', function($rootScope, $scope, homeFactory) {
-    
+    $scope.screenHeight = window.innerHeight;
+    console.log($scope);
 });
 
 un_app.controller('signUpCtrl', function($rootScope, $scope, $location, $timeout, $mdDialog, $mdSidenav, $log, signUpFactory){

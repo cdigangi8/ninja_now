@@ -7,8 +7,8 @@ body {
 }
 
 #homeCntr{
-    height: 1000px;
-    width: 1000px;
+/*    height: 1000px;*/
+    width: 100%;
 }
 #contain{
     /*    background-image: url('/images/un_background.png');*/
