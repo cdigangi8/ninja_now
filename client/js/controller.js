@@ -1,5 +1,5 @@
 un_app.controller('homeCtrl', function($rootScope, $scope, homeFactory) {
-    $scope.screenHeight = window.innerHeight;
+    $scope.screenHeight = window.innerHeight - 100;
     console.log($scope);
 });
 
