@@ -20,7 +20,9 @@ un_app = angular.module('un_app', ['ngRoute', 'ngMaterial'])
 .controller('newController', function($rootScope, $scope, $timeout, $mdSidenav, $location){
      $scope.toggleLeft = buildToggler('left');
     $scope.toggleRight = buildToggler('right');
-
+    $scope.goTo = function(_url){
+        $location.url('/' + _url);
+    }
     function buildToggler(componentId) {
       return function() {
         $mdSidenav(componentId).toggle();

@@ -1,24 +1,18 @@
-<style>
-.inputdemoErrors .inputErrorsApp {
-  min-height: 48px; }
-
-.inputdemoErrors md-input-container > p {
-  font-size: 0.8em;
-  text-align: left;
-  width: 100%; }
-</style>
-
-<div class="container">
-    <div style="font-size: 32px; border-bottom: 1px solid #bdbdbd; margin-bottom: 25px;">
-    Welcome to Ninja Now!
-    </div>
-    <div style="font-size: 14px; color: #979797; margin-top: 25px;">Please fill in the following information to create your user account</div>
+<link rel="stylesheet" type="text/css" href="/css/auth.css">
+<div id="main" class="container" ng-style="{height: screenHeight + 'px'}" flex>
+<div id="contain_up" class="container" flex>
     <div layout="row" style="padding-top: 15px;">
-        <div layout="column" flex="50" layout-align="center center">
-            <img class="logo" src="/images/una_full_chicago_tm.png" width="450px" height="auto">
+        <div layout="column" flex="60" layout-align="center center">
+<!--            <img class="logo" src="/images/una_full_chicago_tm.png" width="450px" height="auto">-->
         </div>
-        <div layout="column" flex="50">
-        <md-card>
+        <div layout="column" flex="40">
+        <md-card style="opacity: .8;">
+            <md-card-title>
+                <md-card-title-text layout-align="center center" flex>
+                    <div style="font-size: 24px; color: #979797;">Sign Up</div>    
+                </md-card-title-text>
+            </md-card-title>
+            <md-divider></md-divider>
     <md-card-content layout-padding>
     <form name="projectForm">
       <div layout="row">
@@ -66,18 +60,6 @@
           <div ng-message="required">This is required.</div>
         </div>
       </md-input-container>
-        
-        <md-input-container class="md-block">
-                          <label style="font-weight: bold;">Select Role</label>
-                          <md-select ng-model="role" required>
-                            <md-option value="Manager">
-                              Manager
-                            </md-option>
-                              <md-option value="Employee">
-                              Employee
-                            </md-option>
-                          </md-select>
-                        </md-input-container>
       <div>
         <md-button ng-click="submitBtn()" style="background-color: #18B67F; color: #ffffff;" type="submit">Submit</md-button>
       </div>
@@ -88,3 +70,4 @@
             </div>
 </div>
 </div>
+    </div>

@@ -1,26 +1,15 @@
-<style>
-.inputdemoErrors .inputErrorsApp {
-  min-height: 48px; }
-
-.inputdemoErrors md-input-container > p {
-  font-size: 0.8em;
-  text-align: left;
-  width: 100%; }
-</style>
-
-<div class="container">
-    <div style="font-size: 32px; border-bottom: 1px solid #bdbdbd; margin-bottom: 25px;">
-    Welcome to Ninja Now!
-    </div>
+<link rel="stylesheet" type="text/css" href="/css/auth.css">
+<div id="main" class="container" ng-style="{height: screenHeight + 'px'}">
+    <div id="contain_in" class="container" flex>
     <div layout="row" style="padding-top: 25px;">
-        <div layout="column" flex="50" layout-align="center center">
-            <img class="logo" src="/images/una_full_chicago_tm.png" width="450px" height="auto">
+        <div layout="column" flex="60" layout-align="center center">
+<!--            <img class="logo" src="/images/una_full_chicago_tm.png" width="450px" height="auto">-->
         </div>
-        <div layout="column" flex="50">
+        <div layout="column" flex="40">
             
-        <md-card>
+        <md-card style="opacity: .8">
             <md-card-title>
-                <md-card-title-text>
+                <md-card-title-text layout-align="center center" flex>
                     <div style="font-size: 24px; color: #979797;">Sign In</div>    
                 </md-card-title-text>
             </md-card-title>
@@ -54,6 +43,7 @@
   </md-card-content>
 </md-card>
             </div>
+</div>   
 </div>
 </div>
 

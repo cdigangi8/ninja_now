@@ -1,12 +1,12 @@
 <link rel="stylesheet" type="text/css" href="/css/home.css">
-<div id="homeCntr" class="container" ng-controller="homeCtrl" ng-style="{height: screenHeight + 'px'}">
+<div id="homeCntr" class="container" ng-style="{height: screenHeight + 'px'}">
     <div id="contain" class="container" flex>
     <div layout="row" flex style="margin-top: 75px;">
         <div layout="column" flex layout-align="center center" style="color: #ffffff; min-height: 200px;">
             <div style="font-size: 48px; font-family: Arial Black;">The Future of Ninja</div>
             <div style="margin-top: 15px;font-size: 20px; font-family: Arial;">Stay connected with your favorite ninjas, anytime, anywhere</div>
             <div style="margin-top: 25px;">
-                <md-button style="background-color: #18B67F;">Start your free trial</md-button>
+                <md-button style="background-color: #18B67F;" ng-click="goTo('sign_up')">Start your free trial</md-button>
             </div>
             <div style="color: #cacaca;">One month free trial eligible for new subscribers</div>
         </div>    

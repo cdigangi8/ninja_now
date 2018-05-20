@@ -1,0 +1,46 @@
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+#main{
+/*    height: 1000px;*/
+    width: 100%;
+}
+#contain_in{
+    /*    background-image: url('/images/un_background.png');*/
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/images/ring.jpg');
+    /*    background-size: contain;*/
+/*        min-height: 100%;*/
+    background-size: 100% 100%;
+   position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+/*    -webkit-backface-visibility: hidden;*/
+}
+
+#contain_up{
+    /*    background-image: url('/images/un_background.png');*/
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/images/rope.jpg');
+    /*    background-size: contain;*/
+/*        min-height: 100%;*/
+    background-size: 100% 100%;
+   position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+/*    -webkit-backface-visibility: hidden;*/
+}
+
+.inputdemoErrors .inputErrorsApp {
+  min-height: 48px; }
+
+.inputdemoErrors md-input-container > p {
+  font-size: 0.8em;
+  text-align: left;
+  width: 100%; }

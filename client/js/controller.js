@@ -1,10 +1,13 @@
-un_app.controller('homeCtrl', function($rootScope, $scope, homeFactory) {
+un_app.controller('homeCtrl', function($rootScope, $scope, homeFactory, $location) {
     $scope.screenHeight = window.innerHeight - 100;
+    $scope.goTo = function(_url){
+        $location.url('/' + _url);
+    }
     console.log($scope);
 });
 
 un_app.controller('signUpCtrl', function($rootScope, $scope, $location, $timeout, $mdDialog, $mdSidenav, $log, signUpFactory){
-    
+    $scope.screenHeight = window.innerHeight - 100;
     $scope.submitBtn = function(){
         signUpFactory.save({
             "url": '/api/user_sign_up',
@@ -25,6 +28,7 @@ un_app.controller('signUpCtrl', function($rootScope, $scope, $location, $timeout
 });
 
 un_app.controller('signInCtrl', function($rootScope, $scope, $location, $timeout, $mdDialog, $mdSidenav, $log, signInFactory){
+    $scope.screenHeight = window.innerHeight - 100;
     $scope.data = {};
     $scope.errMsg = '';
     $scope.reqStatus = '';
