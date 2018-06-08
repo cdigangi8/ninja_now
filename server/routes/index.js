@@ -123,6 +123,29 @@ function authenticateUser(username, password){
     });
 }
     
+//function checkSession(){
+//    console.log('check session function');
+//    var poolData = {
+//    UserPoolId : 'us-east-2_JUZbvaXEG', // Your user pool id here
+//    ClientId : '2kh7bg97t4gpmasbu7rs341khn' // Your client id here
+//    };
+//    var CognitoUserPool = AWSCognito.CognitoUserPool;
+//    var userPool = new AWSCognito.CognitoUserPool(poolData);
+//    var cognitoUser = userPool.getCurrentUser();
+//
+//    if (cognitoUser != null) {
+//        cognitoUser.getSession(function(err, session) {
+//            if (err) {
+//               alert(err);
+//                console.log(err);
+//                return;
+//            }
+//            console.log('session validity: ' + session.isValid());
+//            //You should have a valid session here
+//        });
+//    }
+//}
+    
 function authErr(err){
     auth.status = 'error';
     auth.data = err;
@@ -139,10 +162,15 @@ function getAttr(result){
 }
     
     
+    
   /* GET home page. */
   router.get('/', function(req, res) {
     res.render('index');
   });
+    
+//    router.get('/api/home', function(req, res){
+//        checkSession();
+//    })
 
 //    Post Requests!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     router.post('/api/user_sign_in', function(req, res){

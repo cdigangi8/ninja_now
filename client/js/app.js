@@ -1,9 +1,9 @@
 un_app = angular.module('un_app', ['ngRoute', 'ngMaterial'])
   .config(function($routeProvider) {
     $routeProvider
-    .when('/home', {
-        templateUrl: '/partials/home.html',
-        controller: 'homeCtrl'
+    .when('/splash', {
+        templateUrl: '/partials/splash.html',
+        controller: 'splashCtrl'
       })
         .when('/sign_in', {
         templateUrl: '/partials/sign_in.html',
@@ -13,8 +13,12 @@ un_app = angular.module('un_app', ['ngRoute', 'ngMaterial'])
         templateUrl: '/partials/sign_up.html',
         controller: 'signUpCtrl'
     })
+    .when('/home', {
+        templateUrl: '/partials/content.html',
+        controller: 'contentCtrl'
+    })
         .otherwise({
-        redirectTo: '/home'
+        redirectTo: '/splash'
       });
   })
 .controller('newController', function($rootScope, $scope, $timeout, $mdSidenav, $location){
