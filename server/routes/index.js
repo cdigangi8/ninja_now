@@ -43,14 +43,14 @@ function userSignUp(fullName, email, username, password){
     
     userPool.signUp(username, password, attributeList, null, function(err, result){
         if (err) {
-            //console.log(err);
+            console.log(err);
             resultObj = {'request': err};
             return;
         }
         var cognitoUser = result.user;
-        //console.log('user name is ' + cognitoUser.getUsername());
+        console.log('user name is ' + cognitoUser.getUsername());
         resultObj = {'request': result};
-        //console.log(resultObj);
+        console.log(resultObj);
         return resultObj;
     });
     console.log(resultObj);

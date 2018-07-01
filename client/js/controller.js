@@ -7,6 +7,36 @@ un_app.controller('splashCtrl', function($rootScope, $scope, splashFactory, $loc
 });
 
 un_app.controller('contentCtrl', function($rootScope, $scope, contentFactory, $location) {
+    
+    $scope.conArr = [{title: "Ninja Freestlye | Ep 1", ninjas: "Swanson, Labreck, McCartney, DiGangi, Silenzi", img: "/images/ninja_freestyle.png", link: "ninja_freestyle"},
+                         {title: "Tips and Tricks | Ep 1", ninjas: "Swanson, Silenzi", img: "/images/tips_and_tricks_3.png", link: "tips_and_tricks"},
+                         {title: "Tips and Tricks | Ep 2", ninjas: "Swanson, Silenzi", img: "/images/tips_and_tricks_2.png", link: "tips_and_tricks"},
+                         {title: "Pineapple Pack | Ep 1", ninjas: "McCartney, Yamauchi", img: "/images/grant_lift_tyler.jpg", link: "pineapple_pack"}];
+    
+    $scope.liveArr = [{title: "Live | Movement Lab NNL", ninjas: "DiGangi, Labreck, Swanson", img: "/images/swanson_pic.jpg", link: "live_replay"},
+                         {title: "Live | Apex NorCal NNL", ninjas: "DiGangi, Labreck, Swanson", img: "/images/swanson_pic.jpg", link: "live_replay"},
+                         {title: "Live | NinjaQuest NNL", ninjas: "DiGangi, Labreck, Swanson", img: "/images/swanson_pic.jpg", link: "live_replay"},
+                         {title: "Live | The Edge NNL", ninjas: "DiGangi, Labreck, Swanson", img: "/images/swanson_pic.jpg", link: "live_replay"}];
+    
+    $scope.freestyleArr = [{title: "Ninja Freestlye | Ep 1", ninjas: "Swanson, Labreck, McCartney, DiGangi, Silenzi", img: "/images/ninja_freestyle.png", link: "ninja_freestyle"},
+                         {title: "Ninja Freestlye | Ep 2", ninjas: "Swanson, Labreck, McCartney, DiGangi, Silenzi", img: "/images/ninja_freestyle.png", link: "ninja_freestyle"},
+                         {title: "Ninja Freestlye | Ep 3", ninjas: "Swanson, Labreck, McCartney, DiGangi, Silenzi", img: "/images/ninja_freestyle.png", link: "ninja_freestyle"},
+                         {title: "Ninja Freestlye | Ep 4", ninjas: "Swanson, Labreck, McCartney, DiGangi, Silenzi", img: "/images/ninja_freestyle.png", link: "ninja_freestyle"}];
+    
+    $scope.tipsArr = [{title: "Tips and Tricks | Ep 1", ninjas: "Swanson, Silenzi", img: "/images/tips_and_tricks_3.png", link: "tips_and_tricks"},
+                         {title: "Tips and Tricks | Ep 2", ninjas: "Swanson, Silenzi", img: "/images/tips_and_tricks_3.png", link: "tips_and_tricks"},
+                         {title: "Tips and Tricks | Ep 3", ninjas: "Swanson, Silenzi", img: "/images/tips_and_tricks_3.png", link: "tips_and_tricks"},
+                         {title: "Tips and Tricks | Ep 4", ninjas: "Swanson, Silenzi", img: "/images/tips_and_tricks_3.png", link: "tips_and_tricks"}];
+    
+     $scope.pineappleArr = [{title: "Pineapple Pack | Ep 1", ninjas: "McCartney, Yamauchi", img: "/images/grant_lift_tyler.jpg", link: "pineapple_pack"},
+                         {title: "Pineapple Pack | Ep 2", ninjas: "McCartney, Yamauchi", img: "/images/grant_lift_tyler.jpg", link: "pineapple_pack"},
+                         {title: "Pineapple Pack | Ep 3", ninjas: "McCartney, Yamauchi", img: "/images/grant_lift_tyler.jpg", link: "pineapple_pack"},
+                         {title: "Pineapple Pack | Ep 4", ninjas: "McCartney, Yamauchi", img: "/images/grant_lift_tyler.jpg", link: "pineapple_pack"}];
+    
+    $scope.goTo = function(_url){
+        $location.url('/' + _url);
+    }
+    
 //    homeFactory.get({
 //        "url": '/api/home'
 //    }).then(function(r){
@@ -15,48 +45,48 @@ un_app.controller('contentCtrl', function($rootScope, $scope, contentFactory, $l
 //    });
 $scope.screenHeight = window.innerHeight - 100;
 //Start!!!!!
-    function getTimeRemaining(endtime) {
-  var t = Date.parse(endtime) - Date.parse(new Date());
-  var seconds = Math.floor((t / 1000) % 60);
-  var minutes = Math.floor((t / 1000 / 60) % 60);
-  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
-  var days = Math.floor(t / (1000 * 60 * 60 * 24));
-  return {
-    'total': t,
-    'days': days,
-    'hours': hours,
-    'minutes': minutes,
-    'seconds': seconds
-  };
-}
-
-function initializeClock(id, endtime) {
-  var clock = document.getElementById(id);
-  var daysSpan = clock.querySelector('.days');
-  var hoursSpan = clock.querySelector('.hours');
-  var minutesSpan = clock.querySelector('.minutes');
-  var secondsSpan = clock.querySelector('.seconds');
-
-  function updateClock() {
-    var t = getTimeRemaining(endtime);
-
-    daysSpan.innerHTML = t.days;
-    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
-
-    if (t.total <= 0) {
-      clearInterval(timeinterval);
-    }
-  }
-
-  updateClock();
-  var timeinterval = setInterval(updateClock, 1000);
-}
-
-var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
-initializeClock('clockdiv', deadline);
-    
+//    function getTimeRemaining(endtime) {
+//  var t = Date.parse(endtime) - Date.parse(new Date());
+//  var seconds = Math.floor((t / 1000) % 60);
+//  var minutes = Math.floor((t / 1000 / 60) % 60);
+//  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+//  var days = Math.floor(t / (1000 * 60 * 60 * 24));
+//  return {
+//    'total': t,
+//    'days': days,
+//    'hours': hours,
+//    'minutes': minutes,
+//    'seconds': seconds
+//  };
+//}
+//
+//function initializeClock(id, endtime) {
+//  var clock = document.getElementById(id);
+//  var daysSpan = clock.querySelector('.days');
+//  var hoursSpan = clock.querySelector('.hours');
+//  var minutesSpan = clock.querySelector('.minutes');
+//  var secondsSpan = clock.querySelector('.seconds');
+//
+//  function updateClock() {
+//    var t = getTimeRemaining(endtime);
+//
+//    daysSpan.innerHTML = t.days;
+//    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+//    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+//    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+//
+//    if (t.total <= 0) {
+//      clearInterval(timeinterval);
+//    }
+//  }
+//
+//  updateClock();
+//  var timeinterval = setInterval(updateClock, 1000);
+//}
+//
+//var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
+//initializeClock('clockdiv', deadline);
+//    
 //END!!!!!!!!!!!!!!!!!!!!!!!!!!!
 });
 
@@ -76,7 +106,7 @@ un_app.controller('signUpCtrl', function($rootScope, $scope, $location, $timeout
             $scope.emailAddress = '';
             $scope.username = '';
             $scope.password = '';
-            //$location.url('/');
+//            $location.url('/sign_in');
       });
     } 
 });
@@ -105,7 +135,7 @@ un_app.controller('signInCtrl', function($rootScope, $scope, $location, $timeout
                 $rootScope.user = {};
                 $rootScope.user.name = resp.data.data.name;
                 $rootScope.user.email = resp.data.data.email;
-                $location.url('/home');
+                $location.url('/content');
             }else{
                 $scope.reqStatus = resp.data.status;
                 $scope.errMsg = resp.data.data.message;

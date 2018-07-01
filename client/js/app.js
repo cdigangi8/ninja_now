@@ -13,9 +13,24 @@ un_app = angular.module('un_app', ['ngRoute', 'ngMaterial'])
         templateUrl: '/partials/sign_up.html',
         controller: 'signUpCtrl'
     })
-    .when('/home', {
+    .when('/content', {
         templateUrl: '/partials/content.html',
         controller: 'contentCtrl'
+    })
+    .when('/ninja_freestyle', {
+        templateUrl: '/partials/ninja_freestyle.html',
+    })
+    .when('/live_replay', {
+        templateUrl: '/partials/live_replay.html',
+    })
+    .when('/behind_the_buzzer', {
+        templateUrl: '/partials/behind_the_buzzer.html',
+    })
+    .when('/pineapple_pack', {
+        templateUrl: '/partials/pineapple_pack.html',
+    })
+    .when('/tips_and_tricks', {
+        templateUrl: '/partials/tips_and_tricks.html',
     })
         .otherwise({
         redirectTo: '/splash'

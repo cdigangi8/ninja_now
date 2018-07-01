@@ -20,10 +20,10 @@
     }
 
 #clockdiv{
-	font-family: sans-serif;
+    font-family: Arial Black;
 	color: #fff;
 	display: inline-block;
-	font-weight: 100;
+/*	font-weight: 100;*/
 	text-align: center;
 	font-size: 30px;
 }
@@ -44,7 +44,7 @@
 
 .smalltext{
 	padding-top: 5px;
-	font-size: 16px;
+	font-size: 14px;
 }
 
 /*
@@ -58,7 +58,7 @@
 */
 
 .chanImg{
-    color: #ffffff; font-weight: bold; font-size: 24px; font-family: Verdana; height: 250px;
+    color: #ffffff; font-weight: bold; font-size: 20px; font-family: Verdana; height: 250px;
 }
 #img1{
     background: linear-gradient(rgba(50, 50, 100, 0.7), rgba(50, 50, 100, 0.4)), url('/images/swanson_pic.jpg');
@@ -80,6 +80,12 @@
 }
 #img4{
     background: linear-gradient(rgba(50, 50, 100, 0.7), rgba(50, 50, 100, 0.4)), url('/images/grant_and_kids.jpg');
+    background-size: 100% 100%;
+    width: 100%;
+    height: 250px;
+}
+#img5{
+    background: linear-gradient(rgba(50, 50, 100, 0.7), rgba(50, 50, 100, 0.4)), url('/images/un_background.png');
     background-size: 100% 100%;
     width: 100%;
     height: 250px;
@@ -109,6 +115,19 @@
   background-color: #000000;
 }
 
+.overlayMain {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #000000;
+}
+
 .imgContainer:hover .overlay {
   opacity: .5;
     cursor: pointer;
@@ -123,4 +142,46 @@
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   text-align: center;
+}
+
+.textSumm {
+  color: white;
+  font-size: 16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.overlaySumm {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+/*  background-color: #000000;*/
+    background-color: #323264;
+}
+
+.summContainer:hover .overlaySumm {
+  opacity: 1;
+    cursor: pointer;
+}
+
+.summContainer{
+    position: relative;
+}
+
+.showSumm{
+    background-color: #590000;
+    padding-top: 5px;
+    padding-left: 5px;
+    max-width: 250px;
+    min-height: 75px;
 }
