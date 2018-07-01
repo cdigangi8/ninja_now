@@ -71,3 +71,22 @@
 </div>
 </div>
     </div>
+
+<div style="visibility: hidden">
+<div class="md-dialog-container" id="errDialog">
+    <md-dialog aria-label="loading">
+        <md-dialog-content>
+          <div class="md-dialog-content">
+              <h2 ng-if="errCheck" style="color: #979797;">{{reqStatus}}</h2>
+              <div layout="row">
+            <div ng-if="errCheck">
+                {{errMsg}}
+            </div>
+            </div>
+          </div>
+            <md-button ng-show="errCheck" ng-hide="!errCheck" ng-click="closeDialog()">Close</md-button>
+        </md-dialog-content>
+            
+    </md-dialog>
+</div>
+</div>

@@ -8,6 +8,9 @@
     var colors = require('colors');
   var router = express.Router();
 
+var auth = {};
+    var sess={};
+var userObj = {};
     
 function userSignUp(fullName, email, username, password){
     var AWSCognito = require('amazon-cognito-identity-js');
@@ -39,26 +42,21 @@ function userSignUp(fullName, email, username, password){
     attributeList.push(attributeEmail);
     attributeList.push(attributeName);
 
-    var resultObj = {};
+    global.resultObj = {};
     
-    userPool.signUp(username, password, attributeList, null, function(err, result){
-        if (err) {
+    userPool.signUp(username, password, attributeList, null, function(err,result){
+        if(err){
             console.log(err);
-            resultObj = {'request': err};
+            signUpResults('error', err);
             return;
         }
-        var cognitoUser = result.user;
-        console.log('user name is ' + cognitoUser.getUsername());
-        resultObj = {'request': result};
-        console.log(resultObj);
-        return resultObj;
+        console.log('success');
+        signUpResults('success', result);
+        return;
     });
-    console.log(resultObj);
-    return resultObj;
 }
     
-var auth = {};
-var userObj = {};
+
 var AWSCognito = require('amazon-cognito-identity-js');
 function authenticateUser(username, password){
     //var userObj = {};
@@ -86,6 +84,7 @@ function authenticateUser(username, password){
     cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: function (result) {
             console.log('access token + ' + result.getAccessToken().getJwtToken());
+            saveToken(result.getAccessToken().getJwtToken());
             //POTENTIAL: Region needs to be set if not already set previously elsewhere.
             AWS.config.region = 'us-east-2';
             AWS.config.credentials = new AWS.CognitoIdentityCredentials({
@@ -123,33 +122,53 @@ function authenticateUser(username, password){
     });
 }
     
-//function checkSession(){
-//    console.log('check session function');
-//    var poolData = {
-//    UserPoolId : 'us-east-2_JUZbvaXEG', // Your user pool id here
-//    ClientId : '2kh7bg97t4gpmasbu7rs341khn' // Your client id here
-//    };
-//    var CognitoUserPool = AWSCognito.CognitoUserPool;
-//    var userPool = new AWSCognito.CognitoUserPool(poolData);
-//    var cognitoUser = userPool.getCurrentUser();
-//
-//    if (cognitoUser != null) {
-//        cognitoUser.getSession(function(err, session) {
-//            if (err) {
-//               alert(err);
-//                console.log(err);
-//                return;
-//            }
-//            console.log('session validity: ' + session.isValid());
-//            //You should have a valid session here
-//        });
-//    }
-//}
+function checkSession(username){
+    console.log('check session function');
+//    var jwt = require('jsonwebtoken');
+//    var jwkToPem = require('jwk-to-pem');
+//    var pem = jwkToPem(jwk);
+//    jwt.verify(token, pem, { algorithms: ['RS256'] }, function(err, decodedToken) {
+//        
+//    });
+    var poolData = {
+    UserPoolId : 'us-east-2_JUZbvaXEG', // Your user pool id here
+    ClientId : '2kh7bg97t4gpmasbu7rs341khn' // Your client id here
+    };
+    var CognitoUserPool = AWSCognito.CognitoUserPool;
+    var userPool = new AWSCognito.CognitoUserPool(poolData);
+     var userData = {
+        Username : username,
+        Pool : userPool
+    };
+    var cognitoUser = new AWSCognito.CognitoUser(userData);
+    
+    if (cognitoUser != null) {
+        cognitoUser.getSession(function(err, session) {
+            if (err) {
+               alert(err);
+                console.log(err);
+                return;
+            }
+            console.log('session validity: ' + session.isValid());
+            //You should have a valid session here
+        });
+    }
+}
     
 function authErr(err){
     auth.status = 'error';
     auth.data = err;
-}    
+}
+    
+function saveToken(val){
+    auth.jwt = val;
+}
+    
+function signUpResults(status, val){
+    console.log(status);
+    auth.status = status;
+    auth.data = val;
+}
 
 function getAttr(result){
     auth.status = 'success';
@@ -158,6 +177,7 @@ function getAttr(result){
                 userObj[result[i].getName()] = result[i].getValue();
             }
     auth.data = userObj;
+    auth.raw = result;
     return;
 }
     
@@ -168,9 +188,12 @@ function getAttr(result){
     res.render('index');
   });
     
-//    router.get('/api/home', function(req, res){
-//        checkSession();
-//    })
+    router.post('/api/session', function(req, res){
+        console.log('session');
+        var username = req.body.username;
+        checkSession(username);
+        res.json(sess);
+    })
 
 //    Post Requests!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     router.post('/api/user_sign_in', function(req, res){
@@ -189,7 +212,9 @@ function getAttr(result){
         var username = req.body.username;
         var password = req.body.password;
         var result = userSignUp(fullName, email, username, password);
-        res.json(result);
+        setTimeout(function(){
+            res.json(auth);
+        }, 1000);
     });
 
   module.exports = router;

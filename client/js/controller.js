@@ -37,6 +37,13 @@ un_app.controller('contentCtrl', function($rootScope, $scope, contentFactory, $l
         $location.url('/' + _url);
     }
     
+    contentFactory.save({
+        "url": '/api/session',
+        "username": $scope.username
+      }).then(function(resp) {
+        console.log(resp);
+    });
+    
 //    homeFactory.get({
 //        "url": '/api/home'
 //    }).then(function(r){
@@ -101,6 +108,14 @@ un_app.controller('signUpCtrl', function($rootScope, $scope, $location, $timeout
           "password": $scope.password
       }).then(function(data) {
             console.log(data);
+            if(data.data.status=='success'){
+                $location.url('/sign_in');
+            }else{
+                $scope.reqStatus = data.data.status;
+                $scope.errMsg = data.data.data.message;
+                $scope.errCheck = true;
+                $scope.showloadingDialog();
+            }
             $scope.firstName = '';
             $scope.lastName = '';
             $scope.emailAddress = '';
@@ -109,6 +124,17 @@ un_app.controller('signUpCtrl', function($rootScope, $scope, $location, $timeout
 //            $location.url('/sign_in');
       });
     } 
+$scope.showloadingDialog = function() {
+    $mdDialog.show({
+      contentElement: '#errDialog',
+      parent: angular.element(document.body),
+      clickOutsideToClose: true
+    });
+  };
+    $scope.closeDialog = function(){
+        $mdDialog.hide();
+    }
+    
 });
 
 un_app.controller('signInCtrl', function($rootScope, $scope, $location, $timeout, $mdDialog, $mdSidenav, $log, signInFactory){

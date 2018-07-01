@@ -8,10 +8,10 @@ un_app.factory('splashFactory', function($http) {
 });
 
 un_app.factory('contentFactory', function($http) {
-    var urlBase = '/api/content';
+    //var urlBase = '/api/content';
     var _home = {};
-    _home.get = function(obj) {
-        return $http.get(urlBase, obj);
+    _home.save = function(params) {
+        return $http.get(params.url, params);
     };
     return _home;
 });
