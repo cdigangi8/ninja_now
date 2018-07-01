@@ -8,8 +8,9 @@ un_app.controller('splashCtrl', function($rootScope, $scope, splashFactory, $loc
 
 un_app.controller('contentCtrl', function($rootScope, $scope, contentFactory, $location, $timeout, $mdDialog) {
     
-    var auth_exp = parseInt(localStorage.getItem('nn_auth_exp'),10);
-    console.log(localStorage.getItem('nn_auth_exp'));
+    var auth_var = localStorage.getItem('nn_auth_exp');
+    var auth_exp = parseInt(auth_var,10);
+    //console.log(localStorage.getItem('nn_auth_exp'));
     var authDate = new Date(auth_exp*1000);
     var nowDate = new Date();
     var timeDiff = authDate.getTime() - nowDate.getTime();
@@ -22,7 +23,7 @@ un_app.controller('contentCtrl', function($rootScope, $scope, contentFactory, $l
     });
   };
     
-    if(timeDiff<0){
+    if(auth_var == null || timeDiff<0){
         $scope.session = 'inactive';
         $scope.showSessionDialog();
         $timeout(function(){
