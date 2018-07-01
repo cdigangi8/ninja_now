@@ -6,7 +6,21 @@ un_app.controller('splashCtrl', function($rootScope, $scope, splashFactory, $loc
     console.log($scope);
 });
 
-un_app.controller('contentCtrl', function($rootScope, $scope, contentFactory, $location) {
+un_app.controller('contentCtrl', function($rootScope, $scope, contentFactory, $location, $timeout) {
+    
+    var auth_exp = parseInt(localStorage.getItem('nn_auth_exp'),10);
+    var authDate = new Date(auth_exp*1000);
+    var nowDate = new Date();
+    var timeDiff = authDate.getTime() - nowDate.getTime();
+    if(timeDiff<0){
+        $scope.session = 'inactive';
+        $scope.showSessionDialog();
+        $timeout(function(){
+            $location.url('/sign_in');
+        }, 3000);
+    }else{
+        $scope.session = 'active';
+    }
     
     $scope.conArr = [{title: "Ninja Freestlye | Ep 1", ninjas: "Swanson, Labreck, McCartney, DiGangi, Silenzi", img: "/images/ninja_freestyle.png", link: "ninja_freestyle"},
                          {title: "Tips and Tricks | Ep 1", ninjas: "Swanson, Silenzi", img: "/images/tips_and_tricks_3.png", link: "tips_and_tricks"},
@@ -37,19 +51,14 @@ un_app.controller('contentCtrl', function($rootScope, $scope, contentFactory, $l
         $location.url('/' + _url);
     }
     
-    contentFactory.save({
-        "url": '/api/session',
-        "username": $scope.username
-      }).then(function(resp) {
-        console.log(resp);
+    $scope.showSessionDialog = function() {
+    $mdDialog.show({
+      contentElement: '#sessionDialog',
+      parent: angular.element(document.body),
+      clickOutsideToClose: false
     });
+  };
     
-//    homeFactory.get({
-//        "url": '/api/home'
-//    }).then(function(r){
-//        $scope.data.response = r.data;
-//        console.log($scope.data.response);
-//    });
 $scope.screenHeight = window.innerHeight - 100;
 //Start!!!!!
 //    function getTimeRemaining(endtime) {
@@ -95,6 +104,22 @@ $scope.screenHeight = window.innerHeight - 100;
 //initializeClock('clockdiv', deadline);
 //    
 //END!!!!!!!!!!!!!!!!!!!!!!!!!!!
+});
+
+un_app.controller('videoCtrl', function($rootScope, $scope, $location, $timeout) {
+    var auth_exp = parseInt(localStorage.getItem('nn_auth_exp'),10);
+    var authDate = new Date(auth_exp*1000);
+    var nowDate = new Date();
+    var timeDiff = authDate.getTime() - nowDate.getTime();
+    if(timeDiff<0){
+        $scope.session = 'inactive';
+        $scope.showSessionDialog();
+        $timeout(function(){
+            $location.url('/sign_in');
+        }, 3000);
+    }else{
+        $scope.session = 'active';
+    }
 });
 
 un_app.controller('signUpCtrl', function($rootScope, $scope, $location, $timeout, $mdDialog, $mdSidenav, $log, signUpFactory){
@@ -161,6 +186,7 @@ un_app.controller('signInCtrl', function($rootScope, $scope, $location, $timeout
                 $rootScope.user = {};
                 $rootScope.user.name = resp.data.data.name;
                 $rootScope.user.email = resp.data.data.email;
+                localStorage.setItem('nn_auth_exp', resp.data.jwt.accessToken.payload.exp);
                 $location.url('/content');
             }else{
                 $scope.reqStatus = resp.data.status;

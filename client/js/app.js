@@ -37,15 +37,27 @@ un_app = angular.module('un_app', ['ngRoute', 'ngMaterial'])
       });
   })
 .controller('newController', function($rootScope, $scope, $timeout, $mdSidenav, $location){
-     $scope.toggleLeft = buildToggler('left');
-    $scope.toggleRight = buildToggler('right');
+//     $scope.toggleLeft = buildToggler('left');
+//    $scope.toggleRight = buildToggler('right');
+    
+    var auth_exp = parseInt(localStorage.getItem('nn_auth_exp'),10);
+    var authDate = new Date(auth_exp*1000);
+    var nowDate = new Date();
+    var timeDiff = authDate.getTime() - nowDate.getTime();
+    if(timeDiff<0){
+        $scope.session = 'inactive';
+    }else{
+        $scope.session = 'active';
+    }
+    
     $scope.goTo = function(_url){
         $location.url('/' + _url);
     }
-    function buildToggler(componentId) {
-      return function() {
-        $mdSidenav(componentId).toggle();
-      };
-    }
+//    function buildToggler(componentId) {
+//      return function() {
+//        $mdSidenav(componentId).toggle();
+//      };
+//    }
+    console.log($scope);
 });
 

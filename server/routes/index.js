@@ -84,7 +84,8 @@ function authenticateUser(username, password){
     cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: function (result) {
             console.log('access token + ' + result.getAccessToken().getJwtToken());
-            saveToken(result.getAccessToken().getJwtToken());
+            //console.log(result);
+            saveToken(result);
             //POTENTIAL: Region needs to be set if not already set previously elsewhere.
             AWS.config.region = 'us-east-2';
             AWS.config.credentials = new AWS.CognitoIdentityCredentials({
@@ -124,12 +125,6 @@ function authenticateUser(username, password){
     
 function checkSession(username){
     console.log('check session function');
-//    var jwt = require('jsonwebtoken');
-//    var jwkToPem = require('jwk-to-pem');
-//    var pem = jwkToPem(jwk);
-//    jwt.verify(token, pem, { algorithms: ['RS256'] }, function(err, decodedToken) {
-//        
-//    });
     var poolData = {
     UserPoolId : 'us-east-2_JUZbvaXEG', // Your user pool id here
     ClientId : '2kh7bg97t4gpmasbu7rs341khn' // Your client id here
@@ -140,19 +135,22 @@ function checkSession(username){
         Username : username,
         Pool : userPool
     };
+    //var cognitoUser = userPool.getCurrenUser();
     var cognitoUser = new AWSCognito.CognitoUser(userData);
-    
-    if (cognitoUser != null) {
+    //var session = cognitoUser.getSignInUserSession().getAccessToken().getJwtToken();
+    //console.log(cognitoUser);
+    /*if (cognitoUser != null) {
         cognitoUser.getSession(function(err, session) {
             if (err) {
-               alert(err);
+               console.log(err);
                 console.log(err);
                 return;
             }
             console.log('session validity: ' + session.isValid());
             //You should have a valid session here
         });
-    }
+    }*/
+    return;
 }
     
 function authErr(err){
@@ -180,6 +178,8 @@ function getAttr(result){
     auth.raw = result;
     return;
 }
+
+
     
     
     
@@ -188,10 +188,10 @@ function getAttr(result){
     res.render('index');
   });
     
-    router.post('/api/session', function(req, res){
+    router.post('/api/user_session', function(req, res){
         console.log('session');
         var username = req.body.username;
-        checkSession(username);
+        var result = checkSession(username);
         res.json(sess);
     })
 

@@ -8,12 +8,11 @@ un_app.factory('splashFactory', function($http) {
 });
 
 un_app.factory('contentFactory', function($http) {
-    //var urlBase = '/api/content';
-    var _home = {};
-    _home.save = function(params) {
-        return $http.get(params.url, params);
+    var _content = {};
+    _content.save = function(params) {
+        return $http.post(params.url, params);
     };
-    return _home;
+    return _content;
 });
 
 un_app.factory('signUpFactory', function($http) {
