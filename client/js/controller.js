@@ -6,12 +6,22 @@ un_app.controller('splashCtrl', function($rootScope, $scope, splashFactory, $loc
     console.log($scope);
 });
 
-un_app.controller('contentCtrl', function($rootScope, $scope, contentFactory, $location, $timeout) {
+un_app.controller('contentCtrl', function($rootScope, $scope, contentFactory, $location, $timeout, $mdDialog) {
     
     var auth_exp = parseInt(localStorage.getItem('nn_auth_exp'),10);
+    console.log(localStorage.getItem('nn_auth_exp'));
     var authDate = new Date(auth_exp*1000);
     var nowDate = new Date();
     var timeDiff = authDate.getTime() - nowDate.getTime();
+    
+    $scope.showSessionDialog = function() {
+    $mdDialog.show({
+      contentElement: '#sessionDialog',
+      parent: angular.element(document.body),
+      clickOutsideToClose: false
+    });
+  };
+    
     if(timeDiff<0){
         $scope.session = 'inactive';
         $scope.showSessionDialog();
@@ -51,13 +61,7 @@ un_app.controller('contentCtrl', function($rootScope, $scope, contentFactory, $l
         $location.url('/' + _url);
     }
     
-    $scope.showSessionDialog = function() {
-    $mdDialog.show({
-      contentElement: '#sessionDialog',
-      parent: angular.element(document.body),
-      clickOutsideToClose: false
-    });
-  };
+    
     
 $scope.screenHeight = window.innerHeight - 100;
 //Start!!!!!
@@ -106,11 +110,20 @@ $scope.screenHeight = window.innerHeight - 100;
 //END!!!!!!!!!!!!!!!!!!!!!!!!!!!
 });
 
-un_app.controller('videoCtrl', function($rootScope, $scope, $location, $timeout) {
+un_app.controller('videoCtrl', function($rootScope, $scope, $location, $timeout, $mdDialog) {
     var auth_exp = parseInt(localStorage.getItem('nn_auth_exp'),10);
     var authDate = new Date(auth_exp*1000);
     var nowDate = new Date();
     var timeDiff = authDate.getTime() - nowDate.getTime();
+    
+    $scope.showSessionDialog = function() {
+    $mdDialog.show({
+      contentElement: '#sessionDialog',
+      parent: angular.element(document.body),
+      clickOutsideToClose: false
+    });
+    }
+    
     if(timeDiff<0){
         $scope.session = 'inactive';
         $scope.showSessionDialog();
