@@ -9,6 +9,7 @@
   var router = express.Router();
 
 var auth = {};
+    var conf = {};
     var sess={};
 var userObj = {};
     
@@ -56,6 +57,29 @@ function userSignUp(fullName, email, username, password){
     });
 }
     
+function userConfirm(username, code){
+    var poolData = {
+        UserPoolId : 'us-east-2_JUZbvaXEG',
+        ClientId : '2kh7bg97t4gpmasbu7rs341khn'
+    };
+
+    var userPool = new AWSCognito.CognitoUserPool(poolData);
+    var userData = {
+        Username : username,
+        Pool : userPool
+    };
+
+    var cognitoUser = new AWSCognito.CognitoUser(userData);
+    cognitoUser.confirmRegistration(code, true, function(err, result) {
+        if (err) {
+            console.log(err);
+            confirmStatus('error');
+            return;
+        }
+        confirmStatus('success');
+        console.log('call result: ' + result);
+    });
+}    
 
 var AWSCognito = require('amazon-cognito-identity-js');
 function authenticateUser(username, password){
@@ -158,6 +182,14 @@ function authErr(err){
     auth.data = err;
 }
     
+function confirmStatus(val){
+    if(val == 'success'){
+        conf.status = 'success';
+    }else{
+        conf.status = 'error';
+    }
+}
+    
 function saveToken(val){
     auth.jwt = val;
 }
@@ -203,7 +235,6 @@ function getAttr(result){
         setTimeout(function(){
             res.json(auth);
         }, 8000);
-        
     });
     
     router.post('/api/user_sign_up', function(req, res){
@@ -214,7 +245,16 @@ function getAttr(result){
         var result = userSignUp(fullName, email, username, password);
         setTimeout(function(){
             res.json(auth);
-        }, 1000);
+        }, 3000);
+    });
+    
+    router.post('/api/confirm_registration', function(req, res){
+       var confirmation = req.body.code;
+        var username = req.body.username;
+        userConfirm(username, confirmation);
+        setTimeout(function(){
+            res.json(conf);
+        }, 3000);
     });
 
   module.exports = router;

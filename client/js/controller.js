@@ -33,6 +33,11 @@ un_app.controller('contentCtrl', function($rootScope, $scope, contentFactory, $l
         $scope.session = 'active';
     }
     
+    $scope.upcomingArr = [{title: "Live | Ultimate Ninjas NNL", releaseDate: "August 8, 2018", ninjas: "Labreck, Swanson, Silenzi"},
+                         {title: "Ninja Freestyle | Ep 6", releaseDate: "August 12, 2018", ninjas: "DiGangi, Polizi, Mears"},
+                         {title: "Live | Movement Lab Ohio NNL", releaseDate: "August 14, 2018", ninjas: "Yamauchi, Labreck"},
+                         {title: "Live | Action Athletics NNL", releaseDate: "August 21, 2018", ninjas: "Torres, Swanson"}];
+    
     $scope.conArr = [{title: "Ninja Freestlye | Ep 1", ninjas: "Swanson, Labreck, McCartney, DiGangi, Silenzi", img: "/images/ninja_freestyle.png", link: "ninja_freestyle"},
                          {title: "Tips and Tricks | Ep 1", ninjas: "Swanson, Silenzi", img: "/images/tips_and_tricks_3.png", link: "tips_and_tricks"},
                          {title: "Tips and Tricks | Ep 2", ninjas: "Swanson, Silenzi", img: "/images/tips_and_tricks_2.png", link: "tips_and_tricks"},
@@ -138,6 +143,7 @@ un_app.controller('videoCtrl', function($rootScope, $scope, $location, $timeout,
 
 un_app.controller('signUpCtrl', function($rootScope, $scope, $location, $timeout, $mdDialog, $mdSidenav, $log, signUpFactory){
     $scope.screenHeight = window.innerHeight - 100;
+    $scope.confirmation = '';
     $scope.submitBtn = function(){
         signUpFactory.save({
             "url": '/api/user_sign_up',
@@ -148,24 +154,44 @@ un_app.controller('signUpCtrl', function($rootScope, $scope, $location, $timeout
       }).then(function(data) {
             console.log(data);
             if(data.data.status=='success'){
-                $location.url('/sign_in');
+                $scope.showconfirmDialog(); 
             }else{
                 $scope.reqStatus = data.data.status;
                 $scope.errMsg = data.data.data.message;
                 $scope.errCheck = true;
+                $scope.firstName = '';
+                $scope.lastName = '';
+                $scope.emailAddress = '';
+                $scope.username = '';
+                $scope.password = '';
                 $scope.showloadingDialog();
             }
-            $scope.firstName = '';
-            $scope.lastName = '';
-            $scope.emailAddress = '';
-            $scope.username = '';
-            $scope.password = '';
 //            $location.url('/sign_in');
       });
+        $scope.confirmCode = function(){
+            signUpFactory.save({
+                    "url": '/api/confirm_registration',
+                    "code": $scope.confirmation,
+                    "username": $scope.username
+                }).then(function(resp){
+                    if(resp.data.status == 'success'){
+                        $location.url('/sign_in');
+                    }else{
+                        $scope.confirmation = '';
+                    }
+                });
+        }
     } 
-$scope.showloadingDialog = function() {
+$scope.showloadingDialog = function(type) {
     $mdDialog.show({
       contentElement: '#errDialog',
+      parent: angular.element(document.body),
+      clickOutsideToClose: true
+    });
+  };
+    $scope.showconfirmDialog = function(type) {
+    $mdDialog.show({
+      contentElement: '#confirmDialog',
       parent: angular.element(document.body),
       clickOutsideToClose: true
     });

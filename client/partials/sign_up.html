@@ -90,3 +90,27 @@
     </md-dialog>
 </div>
 </div>
+
+<div style="visibility: hidden">
+<div class="md-dialog-container" id="confirmDialog">
+    <md-dialog aria-label="loading">
+        <md-dialog-content>
+          <div class="md-dialog-content">
+<!--              <div layout="row">-->
+            <div style="color: #979797; font-size: 14px;">
+                Please enter the 6-digit code sent to your email address
+            </div>
+            <div>
+                <md-input-container flex="50">
+                  <label>Confirmation Code</label>
+                  <input required md-no-asterisk name="confirmation" ng-model="confirmation">
+                </md-input-container>
+            </div>
+            </div>
+<!--          </div>-->
+            <md-button ng-if="confirmation.length > 0" ng-click="confirmCode()">Submit</md-button>
+        </md-dialog-content>
+            
+    </md-dialog>
+</div>
+</div>
