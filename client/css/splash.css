@@ -12,7 +12,7 @@ body {
 }
 #contain{
     /*    background-image: url('/images/un_background.png');*/
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/images/grant_and_kids.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/grant_and_kids.jpg');
     /*    background-size: contain;*/
 /*        min-height: 100%;*/
     background-size: 100% 100%;
