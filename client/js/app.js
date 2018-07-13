@@ -44,10 +44,12 @@ un_app = angular.module('un_app', ['ngRoute', 'ngMaterial'])
     var authDate = new Date(auth_exp*1000);
     var nowDate = new Date();
     var timeDiff = authDate.getTime() - nowDate.getTime();
-    if(timeDiff<0){
+    if(auth_exp == null || timeDiff<0){
         $scope.session = 'inactive';
+        $rootScope.rootSession = 'inactive';
     }else{
         $scope.session = 'active';
+        $rootScope.rootSession = 'active';
     }
     
     $scope.goTo = function(_url){
