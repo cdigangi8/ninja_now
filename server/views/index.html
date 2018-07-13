@@ -47,12 +47,12 @@
  
 <div ng-controller="newController" layout="column" style="" ng-cloak>
 <md-content>
-  <md-toolbar class="md-hue-2" style="background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9));">
+  <md-toolbar class="md-hue-2" style="background: linear-gradient(rgba(50, 50, 50, 0.9), rgba(50, 50, 50, 0.9));">
       <div class="md-toolbar-tools" style="font-weight: bold; cursor: pointer;">
-          <span ng-if="session == 'inactive'" ng-click="goTo('splash')">Ninja<i>NOW</i></span>
-          <span ng-if="session == 'active'" ng-click="goTo('content')">Ninja<i>NOW</i></span>
+          <span ng-if="session == 'inactive' || rootSession == 'inactive'" ng-click="goTo('splash')"><img src="/images/nn_logo_color.png" width="200px" height="auto"/></span>
+          <span ng-if="session == 'active' || rootSession == 'active'" ng-click="goTo('content')"><img src="/images/nn_logo_color.png" width="200px" height="auto"/></span>
 
-          <span ng-if="session == 'active'" layout="row" flex layout-align="center center" style="font-size: 14px; font-weight: bold;">
+          <span ng-if="session == 'active' || rootSession == 'active'" layout="row" flex layout-align="center center" style="font-size: 14px; font-weight: bold;">
             <span class="navItem" style="margin-right: 40px;">Live</span>
               <span class="navItem" style="margin-right: 40px;">Channels</span>
               <span class="navItem" style="margin-right: 40px;">Upcoming</span>
@@ -62,7 +62,7 @@
 <!--        <img class="logo" src="/images/una_full_chicago_white_tm.png" width="100px" height="auto">-->
           <span layout="row" flex layout-align="end center" style="font-size: 14px; font-weight: bold;">
 <!--          <i class="glyphicon glyphicon-user" style="margin-right: 5px;"></i>-->
-              <md-button ng-if="session == 'inactive'" ng-click="goTo('sign_in')">LOG IN</md-button>
+              <md-button ng-if="session == 'inactive' || rootSession == 'inactive'" ng-click="goTo('sign_in')">LOG IN</md-button>
           </span>
       </div>
     </md-toolbar>

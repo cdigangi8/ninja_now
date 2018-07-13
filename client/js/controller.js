@@ -3,6 +3,22 @@ un_app.controller('splashCtrl', function($rootScope, $scope, splashFactory, $loc
     $scope.goTo = function(_url){
         $location.url('/' + _url);
     }
+    
+    var auth_var = localStorage.getItem('nn_auth_exp');
+    var auth_exp = parseInt(auth_var,10);
+    //console.log(localStorage.getItem('nn_auth_exp'));
+    var authDate = new Date(auth_exp*1000);
+    var nowDate = new Date();
+    var timeDiff = authDate.getTime() - nowDate.getTime();
+    
+    if(auth_var == null || timeDiff<0){
+        $scope.session = 'inactive';
+        $rootScope.rootSession = 'inactive';
+    }else{
+        $scope.session = 'active';
+        $rootScope.rootSession = 'active';
+    }
+    
     console.log($scope);
 });
 
@@ -25,12 +41,14 @@ un_app.controller('contentCtrl', function($rootScope, $scope, contentFactory, $l
     
     if(auth_var == null || timeDiff<0){
         $scope.session = 'inactive';
+        $rootScope.rootSession = 'inactive';
         $scope.showSessionDialog();
         $timeout(function(){
             $location.url('/sign_in');
         }, 3000);
     }else{
         $scope.session = 'active';
+        $rootScope.rootSession = 'active';
     }
     
     $scope.upcomingArr = [{title: "Live | Ultimate Ninjas NNL", releaseDate: "August 8, 2018", ninjas: "Labreck, Swanson, Silenzi"},
@@ -70,50 +88,6 @@ un_app.controller('contentCtrl', function($rootScope, $scope, contentFactory, $l
     
     
 $scope.screenHeight = window.innerHeight - 100;
-//Start!!!!!
-//    function getTimeRemaining(endtime) {
-//  var t = Date.parse(endtime) - Date.parse(new Date());
-//  var seconds = Math.floor((t / 1000) % 60);
-//  var minutes = Math.floor((t / 1000 / 60) % 60);
-//  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
-//  var days = Math.floor(t / (1000 * 60 * 60 * 24));
-//  return {
-//    'total': t,
-//    'days': days,
-//    'hours': hours,
-//    'minutes': minutes,
-//    'seconds': seconds
-//  };
-//}
-//
-//function initializeClock(id, endtime) {
-//  var clock = document.getElementById(id);
-//  var daysSpan = clock.querySelector('.days');
-//  var hoursSpan = clock.querySelector('.hours');
-//  var minutesSpan = clock.querySelector('.minutes');
-//  var secondsSpan = clock.querySelector('.seconds');
-//
-//  function updateClock() {
-//    var t = getTimeRemaining(endtime);
-//
-//    daysSpan.innerHTML = t.days;
-//    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-//    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-//    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
-//
-//    if (t.total <= 0) {
-//      clearInterval(timeinterval);
-//    }
-//  }
-//
-//  updateClock();
-//  var timeinterval = setInterval(updateClock, 1000);
-//}
-//
-//var deadline = new Date(Date.parse(new Date()) + 15 * 24 * 60 * 60 * 1000);
-//initializeClock('clockdiv', deadline);
-//    
-//END!!!!!!!!!!!!!!!!!!!!!!!!!!!
 });
 
 un_app.controller('videoCtrl', function($rootScope, $scope, $location, $timeout, $mdDialog) {
@@ -132,12 +106,14 @@ un_app.controller('videoCtrl', function($rootScope, $scope, $location, $timeout,
     
     if(timeDiff<0){
         $scope.session = 'inactive';
+        $rootScope.rootSession = 'inactive';
         $scope.showSessionDialog();
         $timeout(function(){
             $location.url('/sign_in');
         }, 3000);
     }else{
         $scope.session = 'active';
+        $rootScope.rootSession = 'active';
     }
 });
 
