@@ -59,6 +59,11 @@ un_app = angular.module('un_app', ['ngRoute', 'ngMaterial'])
     $scope.$on('session_active', function(event, args) {
         $scope.session = 'active';
     });
+    
+    $scope.$on('session_inactive', function(event, args) {
+        $scope.session = 'inactive';
+    });
+    
 //    function buildToggler(componentId) {
 //      return function() {
 //        $mdSidenav(componentId).toggle();

@@ -42,6 +42,7 @@ un_app.controller('contentCtrl', function($rootScope, $scope, contentFactory, $l
     if(auth_var == null || timeDiff<0){
         $scope.session = 'inactive';
         $rootScope.rootSession = 'inactive';
+        $rootScope.$broadcast('session_inactive');
         $scope.showSessionDialog();
         $timeout(function(){
             $location.url('/sign_in');
@@ -108,6 +109,7 @@ un_app.controller('videoCtrl', function($rootScope, $scope, $location, $timeout,
     if(timeDiff<0){
         $scope.session = 'inactive';
         $rootScope.rootSession = 'inactive';
+        $rootScope.$broadcast('session_inactive');
         $scope.showSessionDialog();
         $timeout(function(){
             $location.url('/sign_in');
@@ -115,6 +117,7 @@ un_app.controller('videoCtrl', function($rootScope, $scope, $location, $timeout,
     }else{
         $scope.session = 'active';
         $rootScope.rootSession = 'active';
+        $rootScope.$broadcast('session_active');
     }
 });
 
