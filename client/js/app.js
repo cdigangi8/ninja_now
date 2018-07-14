@@ -55,6 +55,10 @@ un_app = angular.module('un_app', ['ngRoute', 'ngMaterial'])
     $scope.goTo = function(_url){
         $location.url('/' + _url);
     }
+    
+    $scope.$on('session_active', function(event, args) {
+        $scope.session = 'active';
+    });
 //    function buildToggler(componentId) {
 //      return function() {
 //        $mdSidenav(componentId).toggle();

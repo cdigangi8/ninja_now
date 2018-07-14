@@ -49,6 +49,7 @@ un_app.controller('contentCtrl', function($rootScope, $scope, contentFactory, $l
     }else{
         $scope.session = 'active';
         $rootScope.rootSession = 'active';
+        $rootScope.$broadcast('session_active');
     }
     
     $scope.upcomingArr = [{title: "Live | Ultimate Ninjas NNL", releaseDate: "August 8, 2018", ninjas: "Labreck, Swanson, Silenzi"},
