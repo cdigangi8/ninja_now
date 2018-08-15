@@ -25,8 +25,17 @@
             <div layout="row" flex>
                 <div layout="column" flex = "70">
                     <video width="100%" height="auto" controls autoplay muted>
-                      <source src="/videos/nn_sizzle.mp4" type="video/mp4">
+<!--                      <source src="http://d3f0tscx3wpcc3.cloudfront.net/ninja_now_sizzle.m3u8">-->
+                        <source src="http://d3f0tscx3wpcc3.cloudfront.net/network_sizzle.mp4">
+<!--                        <source src="rtmp://s30d6c1ltnmoig.cloudfront.net/cfx/st/network_sizzle.mp4" type="rtmp/mp4">-->
                     </video>
+<!--
+                    <video height="270" width="480" controls
+                      poster="http://d3mk7n3cl27pjb.cloudfront.net/bigbuckbunny/bunny-00004.png"
+                      src src="http://d1s3yn3kxq96sy.cloudfront.net/bigbuckbunny/index.m3u8">
+                      <p>Your browser does not support HLS playback in HTML5.</p>
+                    </video>
+-->
                 </div>
                 <div layout="column" flex = "30">
                     <md-card style="height: 450px;">
@@ -100,6 +109,31 @@
                 </div>
             </div>
     </div>
+        
+        <div layout="row" flex style="margin-top: 75px;">
+            <div layout="column" flex="50">
+                <div class="imgContainer">
+                        <img class="image" ng-src="{{conArr[0].img}}" width="95%" height="auto">
+                        <div class="overlay" ng-click="goTo(conArr[0].link)">
+                            <div class="text"><span class="glyphicon glyphicon-play-circle"></span></div>
+                        </div>
+                    </div>
+                        <div style="font-weight: bold; max-width: 255px;">{{conArr[0].title}}</div>
+                    <div style="color: #979797; max-width: 255px;">{{conArr[0].ninjas}}</div>  
+            </div>
+            <div layout="column" flex="50">
+                <div class="imgContainer">
+                        <img class="image" ng-src="{{conArr[0].img}}" width="95%" height="auto">
+                        <div class="overlay" ng-click="goTo(conArr[0].link)">
+                            <div class="text"><span class="glyphicon glyphicon-play-circle"></span></div>
+                        </div>
+                    </div>
+                        <div style="font-weight: bold; max-width: 255px;">{{conArr[0].title}}</div>
+                    <div style="color: #979797; max-width: 255px;">{{conArr[0].ninjas}}</div>  
+            </div>
+        </div>
+        
+<!--
         <div style=" background-color: #dedede;">
             <md-card>
                 <md-card-title>
@@ -202,6 +236,7 @@
                 </md-card-content>
             </md-card>
         </div>
+-->
 <!--        </div>-->
         
 <!--    </div>-->
