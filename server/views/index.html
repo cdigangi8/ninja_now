@@ -47,7 +47,8 @@
  
 <div ng-controller="newController" layout="column" style="" ng-cloak>
 <md-content>
-  <md-toolbar class="md-hue-2" style="background: linear-gradient(rgba(50, 50, 50, 0.9), rgba(50, 50, 50, 0.9));">
+<!--  <md-toolbar class="md-hue-2" style="background: linear-gradient(rgba(50, 50, 50, 0.9), rgba(50, 50, 50, 0.9));">-->
+    <md-toolbar class="md-hue-2" style="background: #191919;">
       <div class="md-toolbar-tools" style="font-weight: bold; cursor: pointer;">
           <span ng-if="session == 'inactive' || rootSession == 'inactive'" ng-click="goTo('splash')"><img src="/images/nn_logo_color.png" width="200px" height="auto"/></span>
           <span ng-if="session == 'active' || rootSession == 'active'" ng-click="goTo('content')"><img src="/images/nn_logo_color.png" width="200px" height="auto"/></span>
