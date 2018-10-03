@@ -89,6 +89,22 @@ un_app.controller('contentCtrl', function($rootScope, $scope, contentFactory, $l
         $location.url('/' + _url);
     }
     
+    $scope.scrollProp = 0;
+    
+    $scope.scrollToRight = function(){
+        if($scope.scrollProp < $('#channelScroll').width()){
+            $scope.scrollProp += ($('#channelScroll').width());
+        }
+        $('#channelScroll').animate({scrollLeft: $scope.scrollProp}, 700);
+    }
+    $scope.scrollToLeft = function(){
+        if($scope.scrollProp > 0){
+            $scope.scrollProp -= ($('#channelScroll').width());
+        }
+        $('#channelScroll').animate({scrollLeft: $scope.scrollProp}, 700);
+    }
+    
+    
     
     
 $scope.screenHeight = window.innerHeight - 100;

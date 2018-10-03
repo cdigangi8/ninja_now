@@ -254,3 +254,22 @@ position: absolute;
     background-color: #323232;
     cursor: pointer;
 }
+.arrowLeft{
+    color: #ffffff;
+    height: 175px;
+    width: 75px !important;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    position: absolute;
+    z-index: 1000;
+    cursor: pointer;
+}
+.arrowRight{
+    color: #ffffff;
+    height: 175px;
+    width: 75px !important;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+    position: absolute;
+    z-index: 1000;
+    cursor: pointer;
+    right: 0;
+}
