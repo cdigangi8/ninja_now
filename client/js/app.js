@@ -39,17 +39,17 @@ un_app = angular.module('un_app', ['ngRoute', 'ngMaterial'])
 .controller('newController', function($rootScope, $scope, $timeout, $mdSidenav, $location){
 //     $scope.toggleLeft = buildToggler('left');
 //    $scope.toggleRight = buildToggler('right');
-    
+    $scope.session = 'inactive';
     var auth_exp = parseInt(localStorage.getItem('nn_auth_exp'),10);
     var authDate = new Date(auth_exp*1000);
     var nowDate = new Date();
     var timeDiff = authDate.getTime() - nowDate.getTime();
     if(auth_exp == null || timeDiff<0){
         $scope.session = 'inactive';
-        $rootScope.rootSession = 'inactive';
+        //$rootScope.rootSession = 'inactive';
     }else{
         $scope.session = 'active';
-        $rootScope.rootSession = 'active';
+        //$rootScope.rootSession = 'active';
     }
     
     $scope.goTo = function(_url){

@@ -12,11 +12,13 @@ un_app.controller('splashCtrl', function($rootScope, $scope, splashFactory, $loc
     var timeDiff = authDate.getTime() - nowDate.getTime();
     
     if(auth_var == null || timeDiff<0){
-        $scope.session = 'inactive';
-        $rootScope.rootSession = 'inactive';
+        //$scope.session = 'inactive';
+        //$rootScope.rootSession = 'inactive';
+        $rootScope.$broadcast('session_inactive');
     }else{
-        $scope.session = 'active';
-        $rootScope.rootSession = 'active';
+        //$scope.session = 'active';
+        //$rootScope.rootSession = 'active';
+        $rootScope.$broadcast('session_active');
     }
     
     console.log($scope);
@@ -41,7 +43,7 @@ un_app.controller('contentCtrl', function($rootScope, $scope, contentFactory, $l
     
     if(auth_var == null || timeDiff<0){
         $scope.session = 'inactive';
-        $rootScope.rootSession = 'inactive';
+        //$rootScope.rootSession = 'inactive';
         $rootScope.$broadcast('session_inactive');
         $scope.showSessionDialog();
         $timeout(function(){
@@ -49,7 +51,7 @@ un_app.controller('contentCtrl', function($rootScope, $scope, contentFactory, $l
         }, 3000);
     }else{
         $scope.session = 'active';
-        $rootScope.rootSession = 'active';
+        //$rootScope.rootSession = 'active';
         $rootScope.$broadcast('session_active');
     }
     
@@ -108,7 +110,7 @@ un_app.controller('videoCtrl', function($rootScope, $scope, $location, $timeout,
     
     if(timeDiff<0){
         $scope.session = 'inactive';
-        $rootScope.rootSession = 'inactive';
+        //$rootScope.rootSession = 'inactive';
         $rootScope.$broadcast('session_inactive');
         $scope.showSessionDialog();
         $timeout(function(){
@@ -116,7 +118,7 @@ un_app.controller('videoCtrl', function($rootScope, $scope, $location, $timeout,
         }, 3000);
     }else{
         $scope.session = 'active';
-        $rootScope.rootSession = 'active';
+        //$rootScope.rootSession = 'active';
         $rootScope.$broadcast('session_active');
     }
 });
