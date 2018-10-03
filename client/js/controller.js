@@ -97,7 +97,7 @@ un_app.controller('contentCtrl', function($rootScope, $scope, contentFactory, $l
         $scope.scrollWidth = $('#channelScroll').width() +150;
         console.log($scope.scrollProp);
         console.log($('#channelScroll').width());
-        var int = 150;
+        var int = 250;
             for(var s=0; s<=int; s++){
                 if(dir == 'right' && $scope.scrollProp < $scope.scrollWidth){
                     $scope.scrollProp += 1;
