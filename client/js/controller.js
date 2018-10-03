@@ -90,6 +90,7 @@ un_app.controller('contentCtrl', function($rootScope, $scope, contentFactory, $l
     }
     
     $scope.scrollProp = 0;
+    $scope.scrollWidth = $('#channelScroll').width()+120;
     
     $scope.scrollToRight = function(dir){
         console.log($scope.scrollProp);
