@@ -91,16 +91,19 @@ un_app.controller('contentCtrl', function($rootScope, $scope, contentFactory, $l
     
     $scope.scrollProp = 0;
     
-    $scope.scrollToRight = function(){
-        if($scope.scrollProp < $('#channelScroll').width()){
-            $scope.scrollProp += ($('#channelScroll').width());
-        }
-        $('#channelScroll').animate({scrollLeft: $scope.scrollProp}, 700);
-    }
-    $scope.scrollToLeft = function(){
-        if($scope.scrollProp > 0){
-            $scope.scrollProp -= ($('#channelScroll').width());
-        }
+    $scope.scrollToRight = function(dir){
+        console.log($scope.scrollProp);
+        console.log($('#channelScroll').width());
+        var int = 200;
+            for(var s=0; s<=int; s++){
+                if(dir == 'right' && $scope.scrollProp < $('#channelScroll').width()+120){
+                    $scope.scrollProp += s;
+                }else if(dir == 'left' && $scope.scrollProp > 0){
+                    $scope.scrollProp -= s;
+                }else{
+                    break;
+                }
+            }
         $('#channelScroll').animate({scrollLeft: $scope.scrollProp}, 700);
     }
     
